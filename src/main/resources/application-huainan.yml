@@ -46,15 +46,16 @@ sync:
   schedule:
     cron: "0 0 * * * ?"  # 定时任务执行时间（例：每1小时执行）
     sendmail: false  # 是否发送邮件
+    mailfrom: 1803391503@qq.com  # 发送邮件的邮箱
 
 #数据源配置
 # 配置源-数据源
 spring:
   datasource:
     datafrom:
-      jdbc-url: jdbc:postgresql://192.168.11.177:5432/hndchy_prod
+      jdbc-url: jdbc:postgresql://10.10.122.29:6001/hndchy
       username: hndchy
-      password: 111111
+      password: hndc@2024
       driver-class-name: org.postgresql.Driver
     # 配置目标-数据源
     datatarget:
