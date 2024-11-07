@@ -1,0 +1,64 @@
+sync:
+  tables:
+    - r_apply_chsx
+    - r_chsx_dep
+    - r_roleaction
+    - r_roleuser
+    - t_action
+    - t_actiongroup
+    - t_apply_log
+    - t_archives
+    - t_contract
+    - t_contract_dj
+    - t_cgfl
+    - t_department
+    - t_entrsut_apply
+    - t_entrsut_attachment
+    - t_entrust
+    - t_entrust_danti
+    - t_entrust_gg
+    - t_entrust_user
+    - t_entrust_yqsq
+    - t_entrustlisting
+    - t_entrust_progress
+    - t_lp
+    - t_lp_data
+    - t_module
+    - t_msg
+    - t_news
+    - t_news_attach
+    - t_project
+    - t_project_coordinate
+    - t_project_landparcel
+    - t_projectattachment
+    - t_projectmaterial
+    - t_receipt
+    - t_receipt_audit
+    - t_receipt_baxs
+    - t_role
+    - t_suggest
+    - t_surveydep
+    - t_surveydep_log
+    - t_surveydep_pj
+    - t_surveyuser
+    - t_unifieduser
+    - t_user
+  schedule:
+    cron: "0 0 * * * ?"  # 定时任务执行时间（例：每1小时执行）
+    sendmail: false  # 是否发送邮件
+
+#数据源配置
+# 配置源-数据源
+spring:
+  datasource:
+    datafrom:
+      jdbc-url: jdbc:postgresql://192.168.11.177:5432/hndchy_prod
+      username: hndchy
+      password: 111111
+      driver-class-name: org.postgresql.Driver
+    # 配置目标-数据源
+    datatarget:
+      jdbc-url: jdbc:postgresql://10.10.102.50:6001/hndchy
+      username: hndchy
+      password: hndc@2024
+      driver-class-name: org.postgresql.Driver

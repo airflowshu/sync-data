@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: dchy-sync-data
+
+server:
+  port: 8082
+
+#spring admin boot日志输出配置,需要跟logback-spring.xml配置中日志路径一致
+logging:
+  file:
+    name: logs/info.log
+spring.boot.admin:
+  client:
+    url: http://localhost:8082 # 指定 Spring Boot Admin Server 的地址
+    instance:
+      service-url: http://localhost:${server.port}
+      management-url: http://localhost:${server.port}/actuator
+      health-url: http://localhost:${server.port}/actuator/health
+#      prefer-ip: true  # 如果你想用IP显示实例
+  ui:
+    title: 多测合一数据单向同步
+    available-languages:
+      - en
+      - zh-CN
+#  monitor:
+#    status-lifetime: 10000  # 监控数据的存活时间
+#  notify:
+#    mail:
+#      to: 657296200@qq.com  # 已注册的客户端的状态从 UP 变为 OFFLINE 或其他状态，服务端就会自动将电子邮件发送到上面配置的地址
+

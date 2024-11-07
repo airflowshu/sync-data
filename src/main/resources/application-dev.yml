@@ -1,0 +1,25 @@
+#指定哪些表可以进行单向数据同步
+sync:
+  tables:
+    - r_apply_chsx
+    - r_chsx_dep
+  schedule:
+    cron: "0 * * * * ?"  # 定时任务执行时间（例：每1分钟执行）
+    sendmail: false  # 是否发送邮件
+    mailfrom: 1803391503@qq.com  # 发送邮件的邮箱
+
+#数据源配置
+# 配置源-数据源
+spring:
+  datasource:
+    datafrom:
+      jdbc-url: jdbc:postgresql://192.168.11.177:5432/hndchy_prod
+      username: hndchy
+      password: 111111
+      driver-class-name: org.postgresql.Driver
+# 配置目标-数据源
+    datatarget:
+      jdbc-url: jdbc:postgresql://10.10.102.50:6001/hndchy
+      username: hndchy
+      password: hndc@2024
+      driver-class-name: org.postgresql.Driver
