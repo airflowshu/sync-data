@@ -22,8 +22,8 @@ spring.boot.admin:
   ui:
     title: 多测合一数据单向同步
     available-languages:
-      - en
       - zh-CN
+      - en
 #  monitor:
 #    status-lifetime: 10000  # 监控数据的存活时间
 #  notify:

@@ -36,7 +36,6 @@ sync:
     - t_receipt_audit
     - t_receipt_baxs
     - t_role
-    - t_suggest
     - t_surveydep
     - t_surveydep_log
     - t_surveydep_pj
@@ -53,7 +52,7 @@ sync:
 spring:
   datasource:
     datafrom:
-      jdbc-url: jdbc:postgresql://10.10.122.29:6001/hndchy
+      jdbc-url: jdbc:postgresql://200.200.230.3:6001/hndchy
       username: hndchy
       password: hndc@2024
       driver-class-name: org.postgresql.Driver

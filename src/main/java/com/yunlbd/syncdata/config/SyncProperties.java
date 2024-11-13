@@ -17,6 +17,5 @@ public class SyncProperties {
     public static class Schedule {
         public String cron;
         public boolean sendmail = false;
-        public String mailfrom;
     }
 }

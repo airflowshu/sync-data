@@ -51,11 +51,11 @@ public class SyncService {
         );
 
         for (Map<String, Object> row : sourceData) {
-            Object id = row.get("rowsid");
+            Object id = row.get("rowid");
             Map<String, Object> existingData = null;
             try {
                 existingData = dataTargetJdbcTemplate.queryForMap(
-                        "SELECT * FROM " + tableName + " WHERE rowsid = ?", id
+                        "SELECT * FROM " + tableName + " WHERE rowid = ?", id
                 );
             } catch (DataAccessException e) {
                 // throw new RuntimeException(e);
@@ -66,25 +66,24 @@ public class SyncService {
                 List<String> columnsList = new ArrayList<>();
                 List<Object> updateParamsList = new ArrayList<>();
                 for (Map.Entry<String, Object> entry : row.entrySet()) {
-                    if (!"rowsid".equals(entry.getKey())) {
+                    if (!"rowid".equals(entry.getKey())) {
                         columnsList.add(entry.getKey());
                         updateParamsList.add(entry.getValue()); // 收集更新参数
                     }
                 }
                 String columns = String.join(", ", columnsList);
-                // String placeholders = columnsList.stream().map(c -> "?").collect(Collectors.joining(", "));
                 Object[] updateParams = updateParamsList.toArray(); // 转换为数组
                 Object[] allParams = ArrayUtils.addAll(updateParams, id); // 添加 id 到参数数组末尾
 
                 String updateSql = "UPDATE " + tableName + " SET " +
-                        columns.replaceAll(", ", " = ?, ") + " = ? WHERE rowsid = ?"; // 构建更新 SQL
+                        columns.replaceAll(", ", " = ?, ") + " = ? WHERE rowid = ?"; // 构建更新 SQL
                 dataTargetJdbcTemplate.update(updateSql, allParams); // 执行更新操作
             } else {
                 // Insert new record
                 List<String> columns = new ArrayList<>();
                 List<Object> insertParams = new ArrayList<>();
                 for (Map.Entry<String, Object> entry : row.entrySet()) {
-                    if (!"rowsid".equalsIgnoreCase(entry.getKey())) {
+                    if (!"rowid".equalsIgnoreCase(entry.getKey())) {
                         columns.add(entry.getKey());
                         insertParams.add(entry.getValue()); // 收集插入参数，除了id
                     }
@@ -94,7 +93,7 @@ public class SyncService {
                 // 构建 INSERT SQL 语句
                 String sqlColumns = String.join(", ", columns);
                 String sqlPlaceholders = columns.stream().map(c -> "?").collect(Collectors.joining(", "));
-                String insertSql = "INSERT INTO " + tableName + " (" + sqlColumns + ", rowsid) VALUES (" + sqlPlaceholders + ", ?)";
+                String insertSql = "INSERT INTO " + tableName + " (" + sqlColumns + ", rowid) VALUES (" + sqlPlaceholders + ", ?)";
 
                 // 执行插入操作，确保参数类型与数据库列类型匹配
                 dataTargetJdbcTemplate.update(insertSql, insertParams.toArray());
