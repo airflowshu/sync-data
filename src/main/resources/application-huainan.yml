@@ -10,7 +10,6 @@ sync:
     - t_archives
     - t_contract
     - t_contract_dj
-    - t_cgfl
     - t_department
     - t_entrsut_apply
     - t_entrsut_attachment
