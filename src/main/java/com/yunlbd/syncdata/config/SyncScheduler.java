@@ -1,6 +1,7 @@
 package com.yunlbd.syncdata.config;
 
 import com.yunlbd.syncdata.service.SyncService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @Component
 public class SyncScheduler {
 
@@ -24,6 +26,7 @@ public class SyncScheduler {
     @Profile("dev") // 只在dev环境执行
     public void onApplicationReady() {
         // 项目启动后立即执行同步
+        log.info("Application is ready, triggering sync immediately only in ENV-dev...");
         syncService.syncData();
     }
 }

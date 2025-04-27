@@ -38,6 +38,7 @@ public class SyncService {
             if (syncProperties.getSchedule().sendmail) {
                 iMailService.sendSimpleMail("657296200@qq.com", "dchy数据同步！", "已同步" + syncProperties.getTables().size() + "张表");
             }
+            log.info("已同步" + syncProperties.getTables().size() + "张表");
         } catch (Exception e) {
             log.error("Sync data error:", e);
             if (syncProperties.getSchedule().sendmail) {
